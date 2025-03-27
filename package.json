@@ -1,0 +1,34 @@
+{
+  "name": "curso-typescript",
+  "version": "1.0.0",
+  "description": "Proyecto de ejemplo para el desarrollo con TS",
+  "main": "index.js",
+  "scripts": {
+    "tsNode": "cd src && ts-node index.ts",
+    "start": "nodemon",
+    "transpilation": "tsc",
+    "build:prod": "rimraf ./build && tsc",
+    "start:prod": "npm run build:prod && node build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedralcg/Curso-TypeScript.git"
+  },
+  "keywords": [
+    "typescript",
+    "ts"
+  ],
+  "author": "@pedralcg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedralcg/Curso-TypeScript/issues"
+  },
+  "homepage": "https://github.com/pedralcg/Curso-TypeScript#readme",
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "nodemon": "^3.1.9",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
