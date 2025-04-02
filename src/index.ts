@@ -1,3 +1,7 @@
+// Esto es un comentario en TS
+
+import {deleteAllCookies, deleteCookie, getCookieValue, setCookie } from "cookies-utils"
+
 /**
  * Esto es un comentario
  * Multilinea
@@ -508,4 +512,133 @@ console.log(generatorSaga.next().value) // Lo ha hecho el worker
 console.log(generatorSaga.next().value) // Lo ha hecho el worker
 console.log(generatorSaga.next().value) // Lo ha hecho el watcher
 console.log(generatorSaga.next().value)
+
+
+
+//* Sobrecarga de funciones
+
+// function mostrarError(error: string): void{
+//     console.log("Ha habido un error: ", error)
+// }
+
+// function mostrarError(error: number): void{
+//     console.log("Ha habido un error: ", error)
+// }
+
+function mostrarError(error: string | number): void{
+    console.log("Ha habido un error: ", error)
+}
+
+
+
+
+
+//* Persistencia de datos
+
+// 1. Local Storage --> Almacena los datos en el navegador (no se eliminan automaticamente)
+// 2. Session Storage --> La diferencia radica en la sesión del navegador. Los datos persisten en la sesión del navegador
+// 3. Cookies --> Tienen una fecha de caducidad y tambieén tienen un ámbito de URL
+
+
+
+// LocalStorage
+
+// function guardarEnLocalStorage(): void{
+//     localStorage.setItem("nombre", "Pedro")
+// }
+
+// function leer(): void{
+//     let nombre = localStorage.getItem("nombre")
+//     console.log("Nombre: ", nombre)
+// }
+
+
+
+
+//* Cookies
+
+const cookieOptions = {
+    name: "usuario", //string
+    value: "Pedro", //string
+    maxAge: 10 * 60, //optional number (value in seconds)
+    expires: new Date(2099, 10, 1), //optional DAte
+    path: "/" //optional string
+}
+
+
+// Seteamos la Cookie
+
+setCookie(cookieOptions)
+
+
+// Leer una Cookie
+
+let cookieLeida = getCookieValue("usuario")
+console.log(cookieLeida)
+
+
+// Eliminamos la Cookie
+
+deleteCookie("usuario")
+
+
+// Eliminar todas las Cookies
+
+deleteAllCookies()
+
+
+
+
+//* // ------------------------------------------------------- //
+
+
+// Clase Temporizador
+
+class Temporizador {
+    public terminar?: (tiempo: number) => void
+
+    public empezar(): void{
+        setTimeout(() => {
+            // Comprobamos que exista la función terminar como callback
+            if(!this.terminar) return
+
+            // Cuando haya pasado el tiempo, se ejecutara la función terminar
+            this.terminar(Date.now())
+        }, 10000)
+    }
+}
+
+const miTemporizador: Temporizador = new Temporizador()
+
+//Definimos la función del Callback a ejecutar cuando termine el tiempo
+
+miTemporizador.terminar = (tiempo: number) => {
+    console.log("Evento terminado: ", tiempo)
+}
+
+//Lanzamos el temporizador
+
+miTemporizador.empezar() // Iniciará el timeut y cuando termine, ejecuta la función terminar()
+
+
+
+setInterval(() => console.log("Tic, Tac"), 1000) // Imprimir "tic" cada segundo por consola
+
+
+// Eliminar la ejecución de la función
+delete miTemporizador.terminar
+
+
+
+
+// Extender de EventTarget
+
+
+
+
+
+
+
+
+
 
