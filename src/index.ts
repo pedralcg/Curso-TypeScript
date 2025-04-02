@@ -1,6 +1,9 @@
 // Esto es un comentario en TS
 
 import {deleteAllCookies, deleteCookie, getCookieValue, setCookie } from "cookies-utils"
+import { Curso } from "./models/Curso";
+import { LISTA_CURSOS } from "./mock/cursos.mock";
+import { Estudiante } from "./models/Estudiante";
 
 /**
  * Esto es un comentario
@@ -640,5 +643,54 @@ delete miTemporizador.terminar
 
 
 
+
+
+
+
+
+// Creamos un curso
+
+// const cursoTS: Curso = new Curso("TypeScript", 15)
+// const cursoJS: Curso = new Curso("JavaScript", 20)
+
+// const listaCursos: Curso[] = []
+// listaCursos.push(cursoTS, cursoJS) // Lista de cursos
+
+
+
+// Usamos el MOCK
+
+const listaCursos: Curso[] = LISTA_CURSOS
+
+
+
+// Creamos un estudiante
+
+const mario: Estudiante = new Estudiante("Mario", listaCursos, "Alcoba", 3)
+
+console.log(`${mario.nombre} estudia: `)
+mario.cursos.forEach((curso: Curso) => {
+    console.log(`${curso.nombre} - ${curso.horas} horas`)
+})
+
+const cursoAngular: Curso = new Curso("Angular", 40)
+mario.cursos.push(cursoAngular)
+
+
+// Conocer las horas Estudiadas
+
+mario.horasEstudiadas // Nos devovlerá un number
+
+mario.ID_Estudiante // Nos devolverá la ID privada de estudiante
+
+
+
+
+
+// Saber la instancia de un objeto / variable
+
+// - TypeOf -> Devuelve una cadena que indica el tipo de un valor
+
+// - InsanceOf -> Verifica si un objeto pertenece a una clase específica o a su prototipo
 
 
