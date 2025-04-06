@@ -7,6 +7,8 @@ import { Estudiante } from "./models/Estudiante";
 import { Jefe, Trabajador } from "./models/Persona";
 import { ITarea, Niveles } from "./models/interfaces/ITarea";
 import { Programar } from "./models/Programar";
+//import { Singleton } from "./patterns/Singleton";
+
 
 /**
  * Esto es un comentario
@@ -17,13 +19,13 @@ console.log("Hola Typescript");
 console.log("Adiós, Pedro")
 
 // Declaración de Variables:
-var nombre:string = "Pedro"; // indicamos el tipo de variable
+const nombre:string = "Pedro"; // indicamos el tipo de variable
 
 console.log("Hola, " + nombre);
 console.log("¿Que tal", nombre, "?")
 console.log(`Como han ido las vacaciones ${nombre}?`) // Despes de ${} Ctrl+Espacio para listar variables
 
-let email = "pedro@email.com";
+const email = "pedro@email.com";
 console.log(`El email de ${nombre} es ${email}`)
 
 const PI:number = 3.1416; // Tipado como number
@@ -31,11 +33,11 @@ const PI:number = 3.1416; // Tipado como number
 // var apellidos = "Alcoba" // Tipado automaticamente como string
 // apellidos = 3
 
-var apellidos:any = "Alcoba" // Tipado como Any, la variable puede cambiar de tipo
+let apellidos:any = "Alcoba" // Tipado como Any, la variable puede cambiar de tipo
 apellidos = 3
 console.log(apellidos)
 
-var error; // Una variable no definida se considera tipo any
+let error; // Una variable no definida se considera tipo any
 error = false;
 
 console.log(`¿Hay error?: ${error}`)
@@ -55,10 +57,10 @@ c = 8.9;
 //* Tipos más complejos
 
 // Lista de cadenas de texto
-let listaTareas = ["Tarea 1", "Tarea 2", "Tarea 3"]
+const listaTareas = ["Tarea 1", "Tarea 2", "Tarea 3"]
 
 // Combinación de tipos en listas
-let valores: (string | number | boolean)[] = [false, "Hola", true, 69]
+const valores: (string | number | boolean)[] = [false, "Hola", true, 69]
 
 // Enumerados
 
@@ -74,8 +76,8 @@ enum PuestoCarrera {
     "Tercero"
 }
 
-let estadoTarea: Estados = Estados.Completado
-let puestoMaraton: PuestoCarrera = PuestoCarrera.Segundo
+const estadoTarea: Estados = Estados.Completado
+const puestoMaraton: PuestoCarrera = PuestoCarrera.Segundo
 
 
 // Interfaces
@@ -87,7 +89,7 @@ interface Tarea {
 }
 
 // Podemos crear variables que sigan la interface Tarea
-let tarea1: Tarea = {
+const tarea1: Tarea = {
     nombre: "Tarea 1",
     estado: Estados.Pendiente,
     urgencia: 10
@@ -97,34 +99,34 @@ console.log(`Tarea: ${tarea1.nombre}`)
 
 // Asignación multiple de variables
 
-let miTarea = {
+const miTarea = {
     titulo: "Mi tarea",
     estado: Estados.Completado,
     urgencia: 1
 }
 
 // Declaración 1 a 1
-let miTitulo = miTarea.titulo;
-let miEstado = miTarea.estado;
-let miUrgencia = miTarea.urgencia;
+const miTitulo = miTarea.titulo;
+const miEstado = miTarea.estado;
+const miUrgencia = miTarea.urgencia;
 
 // Declaración con facotr de propagación
-let { titulo, estado, urgencia} = miTarea;
+const { titulo, estado, urgencia} = miTarea;
 
 // En listas
-let listaCompraLunes: string[] = ["Leche", "Huevos", "Pan"]
-let listaCompraMartes: string[] = ["Cerveza", "Huevos", "Pan"]
-let listaCompraMiercoles: string[] = ["Coca cola", "Huevos", "Pan"]
-let listaCompraSemana = [...listaCompraLunes, ...listaCompraMartes, ...listaCompraMiercoles]
+const listaCompraLunes: string[] = ["Leche", "Huevos", "Pan"]
+const listaCompraMartes: string[] = ["Cerveza", "Huevos", "Pan"]
+const listaCompraMiercoles: string[] = ["Coca cola", "Huevos", "Pan"]
+const listaCompraSemana = [...listaCompraLunes, ...listaCompraMartes, ...listaCompraMiercoles]
 
 // En Objetos
-let estadoApp = {
+const estadoApp = {
     usuario: "admin",
     session: 3,
     jwt: "jwt-token"
 }
 
-let nuevoEstado = {
+const nuevoEstado = {
     ...estadoApp,
     session: 4,
 }
@@ -138,7 +140,7 @@ type Producto = {
     año: number
 }
 
-let coche: Producto = {
+const coche: Producto = {
     nombre: "Peugeot",
     precio: 4750,
     año:2006
@@ -189,7 +191,7 @@ switch (tarea1.estado){
 
 //* Bucles
 
-let listaTareasNueva: Tarea[] = [
+const listaTareasNueva: Tarea[] = [
     {
         nombre: "Tarea 1",
         estado: Estados.Completado,
@@ -262,7 +264,7 @@ do {
  * Función que muestra un saludo por consola
  */
 function saludar() {
-    let nombre = "Pedro"
+    const nombre = "Pedro"
     console.log(`Hola ${nombre}`)
 }
 
@@ -395,7 +397,7 @@ type Empleado = {
 }
 
 
-let empleadoMario: Empleado = {
+const empleadoMario: Empleado = {
     nombre: "Mario",
     apellidos: "Alcoba Fernandez",
     edad: 3
@@ -482,7 +484,7 @@ function* ejemploGenerator() {
 
 // Guardamos la función generadora en una variable
 
-let generadora = ejemploGenerator()
+const generadora = ejemploGenerator()
 
 // Accedemos a los valores emitidos
 
@@ -510,7 +512,7 @@ function* worker(valor:number){
     yield valor +3
 }
 
-let generatorSaga = watcher(0)
+const generatorSaga = watcher(0)
 
 console.log(generatorSaga.next().value) // Lo ha hecho el watcher
 console.log(generatorSaga.next().value) // Lo ha hecho el worker
@@ -560,37 +562,37 @@ function mostrarError(error: string | number): void{
 
 
 
+//todo Desactivado por error "self is no definided"
+// //* Cookies
 
-//* Cookies
-
-const cookieOptions = {
-    name: "usuario", //string
-    value: "Pedro", //string
-    maxAge: 10 * 60, //optional number (value in seconds)
-    expires: new Date(2099, 10, 1), //optional DAte
-    path: "/" //optional string
-}
-
-
-// Seteamos la Cookie
-
-setCookie(cookieOptions)
+// const cookieOptions = {
+//     name: "usuario", //string
+//     value: "Pedro", //string
+//     maxAge: 10 * 60, //optional number (value in seconds)
+//     expires: new Date(2099, 10, 1), //optional DAte
+//     path: "/" //optional string
+// }
 
 
-// Leer una Cookie
+// // Seteamos la Cookie
 
-let cookieLeida = getCookieValue("usuario")
-console.log(cookieLeida)
-
-
-// Eliminamos la Cookie
-
-deleteCookie("usuario")
+// setCookie(cookieOptions)
 
 
-// Eliminar todas las Cookies
+// // Leer una Cookie
 
-deleteAllCookies()
+// let cookieLeida = getCookieValue("usuario")
+// console.log(cookieLeida)
+
+
+// // Eliminamos la Cookie
+
+// deleteCookie("usuario")
+
+
+// // Eliminar todas las Cookies
+
+// deleteAllCookies()
 
 
 
@@ -697,7 +699,7 @@ mario.ID_Estudiante // Nos devolverá la ID privada de estudiante
 // - InsanceOf -> Verifica si un objeto pertenece a una clase específica o a su prototipo
 
 
-let fechaNacimiento = new Date(1990, 8, 1)
+const fechaNacimiento = new Date(1990, 8, 1)
 if(fechaNacimiento instanceof Date){
     console.log("Es una instancia de Date")
 }
@@ -713,13 +715,13 @@ if(mario instanceof Estudiante){
 
 //* Herencia y Polimorfismo
 
-let trabajador1 = new Trabajador("Pedro", "Alcoba", 34, 1700)
-let trabajador2 = new Trabajador("David", "Sanchez", 35, 2000)
-let trabajador3 = new Trabajador("Juan", "Villaplana", 35, 1300)
+const trabajador1 = new Trabajador("Pedro", "Alcoba", 34, 1700)
+const trabajador2 = new Trabajador("David", "Sanchez", 35, 2000)
+const trabajador3 = new Trabajador("Juan", "Villaplana", 35, 1300)
 
 
 
-let jefe = new Jefe("Julia", "Fernandez", 35)
+const jefe = new Jefe("Julia", "Fernandez", 35)
 
 jefe.trabajadores.push(trabajador1, trabajador2, trabajador3)
 
@@ -737,7 +739,7 @@ jefe.trabajadores.forEach((trabajador: Trabajador) => {
 
 //* Usos de Interfaces
 
-let programar: ITarea = {
+const programar: ITarea = {
     titulo: "Programar en TypeScript",
     descripción: "Practicar con Katas para aprender a desarrollar con TS",
     completada: false,
@@ -753,7 +755,7 @@ console.log(programar.resumen())
 
 // Tarea de Programación (implementa ITarea)
 
-let programarTS = new Programar("TypeScript", "Tarea de programación en TS", false, Niveles.Bloqueante)
+const programarTS = new Programar("TypeScript", "Tarea de programación en TS", false, Niveles.Bloqueante)
 console.log(programarTS.resumen())
 
 
@@ -766,57 +768,91 @@ console.log(programarTS.resumen())
 // - Propiedades -->
 
 
-function Override(label: string){
-    return function (target:any, key:string){
-        Object.defineProperty(target, key, {
-            configurable: false,
-            get: () => label
-        })
-    }
-}
+// function Override(label: string){
+//     return function (target:any, key:string){
+//         Object.defineProperty(target, key, {
+//             configurable: false,
+//             get: () => label
+//         })
+//     }
+// }
 
-class PruebaDecorador {
-    @Override("prueba") // Llamar a la función Override
-    nombre: string = "Pedro"
-}
+// class PruebaDecorador {
+//     @Override("prueba") // Llamar a la función Override
+//     nombre: string = "Pedro"
+// }
 
-let prueba = new PruebaDecorador()
-console.log(prueba.nombre) // "Prueba" siempre va a ser devuelto a través del get()
+// let prueba = new PruebaDecorador()
+// console.log(prueba.nombre) // "Prueba" siempre va a ser devuelto a través del get()
 
 
 
 // Otra función para usarla com odecorador
 
-function Sololectura (target:any, key:string){
-    Object.defineProperty(target, key, {
-        writable: false
-    })
-}
+// function Sololectura (target:any, key:string){
+//     Object.defineProperty(target, key, {
+//         writable: false
+//     })
+// }
 
-class PruebaSoloLectura {
-    @Sololectura
-    nombre: string = ""
-}
+// class PruebaSoloLectura {
+//     @Sololectura
+//     nombre: string = ""
+// }
 
-let pruebaLectura = new PruebaSoloLectura()
-pruebaLectura.nombre = "Ana"
-// console.log(pruebaLectura.nombre) // ==> Undefined, ya que no se le puede dar valor (es solo de lectura)
+// let pruebaLectura = new PruebaSoloLectura()
+// pruebaLectura.nombre = "Ana"
+// // console.log(pruebaLectura.nombre) // ==> Undefined, ya que no se le puede dar valor (es solo de lectura)
 
 
 // Decorador para parámetros de un método
 
-function mostrarPosicion(target:any, propertyKey: string, parameterIndex: number){
-    console.log("Posición", parameterIndex)
-}
+// function mostrarPosicion(target:any, propertyKey: string, parameterIndex: number){
+//     console.log("Posición", parameterIndex)
+// }
 
-class PruebaMetodoDecorador{
-    prueba(a: string, @mostrarPosicion b: boolean){
-        console.log(b)
-    }
-}
+// class PruebaMetodoDecorador{
+//     prueba(a: string, @mostrarPosicion b: boolean){
+//         console.log(b)
+//     }
+// }
 
-// Usamos el método con el parámetro y su decoración
-new PruebaMetodoDecorador().prueba("Hola", false)
+// // Usamos el método con el parámetro y su decoración
+// new PruebaMetodoDecorador().prueba("Hola", false)
+
+
+
+
+
+//! Falta Video 7 - 
+//!  Patrones de diseño, técnicas de refactorización, sitios para encontrar información y restructuración de código para usarlo de ejemplo
+
+//Comprimido en zip y haber compartido el proyecto
+
+
+//! Patrones creacionales
+
+// const miPrimerSingleton = Singleton.getInstance()
+// const miSegundoSingleton = Singleton.getInstance()
+
+// // Comprueba si ambas son inguales
+// if (miPrimerSingleton === miSegundoSingleton) {
+//     console.log(" Singleton funciona correctamente, ambas variables contienen la misma instancia.")
+//     miPrimerSingleton,nostrarPorConsola()
+//     miSegundoSingleton.mostrarPorConsola()
+// } else {
+//     console.log(" Singleton falló, las variables contienen instancias diferentes.")
+//     }
+
+
+/**
+  * Patrones de diseño existentes.
+  * Técnicas de refactorización de código.
+  * Comentarios sobre sitios donde se puede encontrar información relevante a estos temas.
+  * Cómo reestructurar el código y utilizarlo como ejemplo.
+  */
+
+
 
 
 
